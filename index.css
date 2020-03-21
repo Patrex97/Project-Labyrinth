@@ -1,7 +1,7 @@
 body { 
     background: #f4f4f4; 
     font-family: sans-serif; 
-
+    box-sizing: border-box;
 }
 h1 { 
     text-align: center; 
@@ -10,9 +10,10 @@ h1 {
 #gameArea { 
     width: 900px; 
     height: 900px;
-    margin: 20px auto 0; 
-    background-color: blueviolet;
+    margin: 0px auto 0; 
+    background-color: burlywood;
     position: relative;
+    border: 10px solid blue;
 }
 
 #player{
@@ -22,12 +23,10 @@ h1 {
     width:30px;
     left:0px;
     top:0px;
-    transition: all .4s linear;
+    
 }
 
 .wall{
-    width:30px;
-    height: 30px;
     position: absolute;
     background-color: blue;
 }

@@ -1,0 +1,20 @@
+[
+    {
+	"xStart": 30,
+	"xEnd" : 60,
+	"yStart" : 0,
+	"yEnd" : 570
+    },
+    {
+	"xStart": 0,
+	"xEnd" : 150,
+	"yStart" : 600,
+	"yEnd" : 630
+    },
+    {
+	"xStart": 90,
+	"xEnd" : 120,
+	"yStart" : 60,
+	"yEnd" : 570
+    }
+]
