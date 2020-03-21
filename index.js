@@ -6,12 +6,35 @@ let filePath;
 let playerX = 0;
 let playerY = 0;
 let mapInfo = [];
+let scaleValue ;
+let oldScaleValue = 0;
 
 const map1 = new Set();
 
-mapCreator()
-
+window.addEventListener("resize", checkSize);
 gameArea.addEventListener("keydown", playerMove);
+
+function checkSize(){
+    if(window.innerWidth > 900){
+        scaleValue = 30;
+    }else{
+        scaleValue = 20;
+    }
+    if(oldScaleValue != scaleValue){
+        const walls = document.getElementsByClassName("wall");
+        console.log(walls.length);
+        for(let i = 0; i < walls.length ; i++){
+            gameArea.removeChild(walls[i]);
+            console.log(i);
+        }      
+        
+        oldScaleValue = scaleValue;
+        mapCreator();
+    }
+    
+    
+}
+checkSize()
 
 function mapCreator(){
     fetch('maps/map1.json')
@@ -23,12 +46,13 @@ function mapCreator(){
             for(i = 0; i < mapInfo[0].length; i++){
                 let wall = document.createElement('div');
                 wall.setAttribute('class', 'wall');
-                wall.style.left = mapInfo[0][i].xStart+"px";
-                wall.style.top = mapInfo[0][i].yStart + "px";
-                wall.style.width = mapInfo[0][i].xEnd - mapInfo[0][i].xStart + "px";
-                wall.style.height = mapInfo[0][i].yEnd - mapInfo[0][i].yStart + "px";
+                wall.style.left = mapInfo[0][i].xStart*scaleValue+"px";
+                wall.style.top = mapInfo[0][i].yStart*scaleValue + "px";
+                wall.style.width = mapInfo[0][i].xEnd*scaleValue - mapInfo[0][i].xStart*scaleValue + "px";
+                wall.style.height = mapInfo[0][i].yEnd*scaleValue - mapInfo[0][i].yStart*scaleValue + "px";
+                wall.setAttribute("name", mapInfo[0][i].name);
                 gameArea.appendChild(wall);
-                console.log(wall);
+             //   console.log(wall);
             }
             
     });
@@ -49,11 +73,11 @@ function playerMove(e){
 
             case "KeyD": 
             
-                if(playerX + 30  == wallStartX && (playerY >= wallStartY && playerY < wallEndY)) isWall = true;
+                if(playerX + scaleValue  == wallStartX && (playerY >= wallStartY && playerY < wallEndY)) isWall = true;
                 break;
 
             case "KeyS":
-                if(playerY + 30 == wallStartY && (playerX >= wallStartX && playerX < wallEndX )) isWall = true;
+                if(playerY + scaleValue == wallStartY && (playerX >= wallStartX && playerX < wallEndX )) isWall = true;
                 break;
 
             case "KeyA":
@@ -64,21 +88,19 @@ function playerMove(e){
                 if(playerY == wallEndY && (playerX >= wallStartX && playerX < wallEndX )) isWall = true;
                 break;
         } 
-        console.log(isWall);
     }
 
-     
     if(!isWall){
         switch(e.code){
-            case "KeyD": if(playerX + 60 < rightBorder) playerX += 30;break;
-            case "KeyS": if(playerY + 60 < bottomBorder) playerY += 30;break;
-            case "KeyA": if(playerX > 0) playerX -= 30;break;
-            case "KeyW": if(playerY > 0) playerY -= 30;break;
+            case "KeyD": if(playerX + 2*scaleValue < rightBorder) playerX += scaleValue;break;
+            case "KeyS": if(playerY + 2*scaleValue < bottomBorder) playerY += scaleValue;break;
+            case "KeyA": if(playerX > 0) playerX -= scaleValue;break;
+            case "KeyW": if(playerY > 0) playerY -= scaleValue;break;
         }
         player.style.left = playerX+"px";
         player.style.top = playerY+"px";
     }  
   //  console.log("Player X: " + playerX);
-    console.log("Player Y: " + playerY);
+  //  console.log("Player Y: " + playerY);
 }
 
