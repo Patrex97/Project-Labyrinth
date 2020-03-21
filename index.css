@@ -7,33 +7,29 @@ h1 {
     text-align: center; 
 }
 
-.container { 
-    max-width: 1000px; 
+#gameArea { 
+    width: 900px; 
+    height: 900px;
     margin: 20px auto 0; 
     background-color: blueviolet;
+    position: relative;
 }
 
-.grid-item { 
-    color: #fff; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    font-weight: bold; 
-    font-size: 2rem; 
-}
-
-.grid{
-    display:grid; 
-    grid-template-columns: repeat(50, minmax(1px, 3px));
-    grid-template-rows: repeat(50, minmax(3px, 3px));
-    grid-gap:1px;
-    background:black;
+#player{
+    background-color: red;
+    position: absolute;
+    height:30px;
+    width:30px;
+    left:0px;
+    top:0px;
+    transition: all .4s linear;
 }
 
 .wall{
-    background-color: red;
-    grid-column: 1/ 40;
+    width:30px;
+    height: 30px;
+    position: absolute;
+    background-color: blue;
 }
 
 
