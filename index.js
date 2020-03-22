@@ -1,5 +1,5 @@
 const gameArea = document.getElementById("gameArea");
-const player = document.getElementById("player");
+let player;
 const rightBorder = document.getElementById("gameArea").offsetWidth;
 const bottomBorder = document.getElementById("gameArea").offsetHeight;
 let filePath;
@@ -9,30 +9,31 @@ let mapInfo = [];
 let scaleValue ;
 let oldScaleValue = 0;
 
-const map1 = new Set();
-
 window.addEventListener("resize", checkSize);
 gameArea.addEventListener("keydown", playerMove);
 
 function checkSize(){
     if(window.innerWidth > 900){
         scaleValue = 30;
+        
     }else{
         scaleValue = 20;
+        
     }
     if(oldScaleValue != scaleValue){
-        const walls = document.getElementsByClassName("wall");
-        console.log(walls.length);
-        for(let i = 0; i < walls.length ; i++){
-            gameArea.removeChild(walls[i]);
-            console.log(i);
-        }      
-        
-        oldScaleValue = scaleValue;
+        gameArea.innerHTML = '';
+        if(scaleValue == 20)
+        {
+            playerX = playerX * 2/3;
+            playerY = playerY * 2/3;
+        }else{
+            playerX = playerX * 3/2;
+            playerY = playerY * 3/2;
+        }
         mapCreator();
+        oldScaleValue = scaleValue;
+        
     }
-    
-    
 }
 checkSize()
 
@@ -43,6 +44,12 @@ function mapCreator(){
         })
         .then(data => mapInfo.push(data))
         .then((data) => {
+            let player = document.createElement('div');
+            player.setAttribute('id', 'player');
+            player.style.left = playerX+"px";
+            player.style.top = playerY+"px";
+            gameArea.appendChild(player);
+            player = document.getElementById("player");
             for(i = 0; i < mapInfo[0].length; i++){
                 let wall = document.createElement('div');
                 wall.setAttribute('class', 'wall');
@@ -59,7 +66,9 @@ function mapCreator(){
 }
 
 function playerMove(e){
-    const walls = document.getElementsByClassName("wall");
+    player = document.getElementById("player");
+    let walls = document.getElementsByClassName("wall");
+    console.log(walls.length);
     let isWall = false;
     for(let i = 0; i < walls.length; i++)
     {
@@ -88,19 +97,22 @@ function playerMove(e){
                 if(playerY == wallEndY && (playerX >= wallStartX && playerX < wallEndX )) isWall = true;
                 break;
         } 
+        
     }
-
+    console.log(isWall);
     if(!isWall){
+        console.log(rightBorder);
         switch(e.code){
-            case "KeyD": if(playerX + 2*scaleValue < rightBorder) playerX += scaleValue;break;
-            case "KeyS": if(playerY + 2*scaleValue < bottomBorder) playerY += scaleValue;break;
+            case "KeyD": if(playerX + scaleValue < rightBorder - 2*scaleValue) playerX += scaleValue;break;
+            case "KeyS": if(playerY + scaleValue < bottomBorder - 2*scaleValue) playerY += scaleValue;break;
             case "KeyA": if(playerX > 0) playerX -= scaleValue;break;
             case "KeyW": if(playerY > 0) playerY -= scaleValue;break;
+            
         }
         player.style.left = playerX+"px";
         player.style.top = playerY+"px";
     }  
-  //  console.log("Player X: " + playerX);
-  //  console.log("Player Y: " + playerY);
+    console.log("Player X: " + playerX);
+    console.log("Player Y: " + playerY);
 }
 
