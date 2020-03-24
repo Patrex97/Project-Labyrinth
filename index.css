@@ -23,7 +23,7 @@ h1 {
     width:30px;
     left:0px;
     top:0px;
-    
+    z-index: 1;
 }
 
 .wall{
@@ -33,6 +33,11 @@ h1 {
 
 #hud{
     display:none;
+}
+
+#finish{
+    position: absolute;
+    background-color:black;
 }
 
 

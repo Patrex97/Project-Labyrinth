@@ -62,7 +62,15 @@ function mapCreator(){
             player.style.top = playerY+"px";
             gameArea.appendChild(player);
             player = document.getElementById("player");
-            for(i = 0; i < mapInfo[0].length; i++){
+            let mapfinish = document.createElement('div');
+            mapfinish.setAttribute('id', 'finish');
+            mapfinish.style.left = mapInfo[0][0].xStart*scaleValue+"px";
+            mapfinish.style.top = mapInfo[0][0].yStart*scaleValue + "px";
+            mapfinish.style.width = mapInfo[0][0].xEnd*scaleValue - mapInfo[0][0].xStart*scaleValue + "px";
+            mapfinish.style.height = mapInfo[0][0].yEnd*scaleValue - mapInfo[0][0].yStart*scaleValue + "px";
+            mapfinish.setAttribute("name", mapInfo[0][0].name);
+            gameArea.appendChild(mapfinish);
+            for(i = 1; i < mapInfo[0].length; i++){
                 let wall = document.createElement('div');
                 wall.setAttribute('class', 'wall');
                 wall.style.left = mapInfo[0][i].xStart*scaleValue+"px";
@@ -78,7 +86,8 @@ function mapCreator(){
 
 function playerMove(e){
     player = document.getElementById("player");
-    let walls = document.getElementsByClassName("wall");   
+    const walls = document.getElementsByClassName("wall");  
+    const mapFinish = document.getElementById("finish");
     let key;
     if(typeof e === 'string') key = e;
     else key = e.code;
@@ -125,6 +134,7 @@ function playerMove(e){
         }
         player.style.left = playerX+"px";
         player.style.top = playerY+"px";
+        if(player.style.left == mapFinish.style.left && player.style.top == mapFinish.style.top) alert("You win!");
     }  
     console.log("Player X: " + playerX);
     console.log("Player Y: " + playerY);

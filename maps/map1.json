@@ -1,5 +1,12 @@
 [
-    {
+	{
+		"name": "Finish",
+		"xStart": 15,
+		"xEnd" : 16,
+		"yStart" : 27,
+		"yEnd" : 28
+	},
+	{
 		"name": "1",
 		"xStart": 1,
 		"xEnd" : 2,
