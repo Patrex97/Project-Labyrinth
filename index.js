@@ -1,16 +1,12 @@
 const gameArea = document.getElementById("gameArea");
-const rightBorder = document.getElementById("gameArea").offsetWidth;
-const bottomBorder = document.getElementById("gameArea").offsetHeight;
 const btnUp = document.getElementById("up");
 const btnDown = document.getElementById("down");
 const btnLeft = document.getElementById("left");
 const btnRight = document.getElementById("right");
-let player;
-let filePath;
+let filePath = 'maps/map1.json';
 let playerX = 0;
 let playerY = 0;
-let mapInfo = [];
-let scaleValue ;
+let scaleValue;
 let oldScaleValue = 0;
 
 window.addEventListener("resize", checkSize);
@@ -50,7 +46,8 @@ function checkSize(){
 checkSize()
 
 function mapCreator(){
-    fetch('maps/map1.json')
+    let mapInfo = [];
+    fetch(filePath)
         .then((response) => {
             return response.json();
         })
@@ -85,9 +82,11 @@ function mapCreator(){
 }
 
 function playerMove(e){
-    player = document.getElementById("player");
+    const rightBorder = document.getElementById("gameArea").offsetWidth;
+    const bottomBorder = document.getElementById("gameArea").offsetHeight;
     const walls = document.getElementsByClassName("wall");  
     const mapFinish = document.getElementById("finish");
+    let player = document.getElementById("player");
     let key;
     if(typeof e === 'string') key = e;
     else key = e.code;

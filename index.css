@@ -76,7 +76,7 @@ h1 {
         text-align: center;
     }
 
-    .move-btn:hover{
+    .move-btn:focus{
         border-color:#56373A;
         background-color: #6d93aa;
     }
