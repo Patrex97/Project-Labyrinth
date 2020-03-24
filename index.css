@@ -31,10 +31,17 @@ h1 {
     background-color: blue;
 }
 
-@media (max-width: 900px){
+#hud{
+    display:none;
+}
+
+
+
+
+@media (max-width: 1000px){
 
     #player{
-       height:20px;
+        height:20px;
         width:20px;
     }
 
@@ -46,6 +53,52 @@ h1 {
         position: relative;
         border: 20px solid blue;
     }
+
+    #hud{
+        margin:0 auto;
+        width:60vw;
+        display:flex;
+        flex-direction: row;
+    }
+    
+    .move-btn{
+        position: relative;
+        flex: auto;
+        margin: 10px;
+        width:25px;
+        height:auto;
+        border:10px solid black;
+        text-align: center;
+    }
+
+    .move-btn:hover{
+        border-color:#56373A;
+        background-color: #6d93aa;
+    }
+    
+    .move-btn::before {
+        content: "";
+        float: left;
+        padding-top: 100%;
+    }
+    
+    #up::after,
+    #down::after,
+    #left::after,
+    #right::after
+    {
+        position: absolute;
+        top:50%;
+        left:50%;
+        font-size: 2rem;
+        transform: translate(-50%, -50%);
+    }
+
+    #up::after{content: "UP";}
+    #down::after{content: "DOWN";}
+    #left::after{content: "LEFT";}
+    #right::after{content: "RIGHT";}
+
 }
 
 
