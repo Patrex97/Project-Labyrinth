@@ -4,8 +4,8 @@ const btnDown = document.getElementById("down");
 const btnLeft = document.getElementById("left");
 const btnRight = document.getElementById("right");
 let filePath = 'maps/map1.json';
-let playerX = 0;
-let playerY = 0;
+let playerX = -1;
+let playerY = -1;
 let scaleValue;
 let oldScaleValue = 0;
 
@@ -59,15 +59,18 @@ function mapCreator(){
             player.style.top = playerY+"px";
             gameArea.appendChild(player);
             player = document.getElementById("player");
-            let mapfinish = document.createElement('div');
-            mapfinish.setAttribute('id', 'finish');
-            mapfinish.style.left = mapInfo[0][0].xStart*scaleValue+"px";
-            mapfinish.style.top = mapInfo[0][0].yStart*scaleValue + "px";
-            mapfinish.style.width = mapInfo[0][0].xEnd*scaleValue - mapInfo[0][0].xStart*scaleValue + "px";
-            mapfinish.style.height = mapInfo[0][0].yEnd*scaleValue - mapInfo[0][0].yStart*scaleValue + "px";
-            mapfinish.setAttribute("name", mapInfo[0][0].name);
-            gameArea.appendChild(mapfinish);
-            for(i = 1; i < mapInfo[0].length; i++){
+            if(playerX < 0 || playerY < 0){
+                playerX = mapInfo[0][0].xStart*scaleValue;
+                playerY = mapInfo[0][0].yStart*scaleValue;
+                player.style.left = playerX+"px";
+                player.style.top = playerY+"px";
+            }
+            let mapFinish = document.createElement('div');
+            mapFinish.setAttribute('id', 'finish');
+            mapFinish.style.left = mapInfo[0][1].xStart*scaleValue+"px";
+            mapFinish.style.top = mapInfo[0][1].yStart*scaleValue + "px";
+            gameArea.appendChild(mapFinish);
+            for(i = 2; i < mapInfo[0].length; i++){
                 let wall = document.createElement('div');
                 wall.setAttribute('class', 'wall');
                 wall.style.left = mapInfo[0][i].xStart*scaleValue+"px";
@@ -76,7 +79,6 @@ function mapCreator(){
                 wall.style.height = mapInfo[0][i].yEnd*scaleValue - mapInfo[0][i].yStart*scaleValue + "px";
                 wall.setAttribute("name", mapInfo[0][i].name);
                 gameArea.appendChild(wall);
-             //   console.log(wall);
             }  
     });
 }
@@ -133,8 +135,20 @@ function playerMove(e){
         }
         player.style.left = playerX+"px";
         player.style.top = playerY+"px";
-        if(player.style.left == mapFinish.style.left && player.style.top == mapFinish.style.top) alert("You win!");
+        if(player.style.left == mapFinish.style.left && player.style.top == mapFinish.style.top) levelDone();
     }  
     console.log("Player X: " + playerX);
     console.log("Player Y: " + playerY);
+}
+
+function levelDone(){   
+    filePath = "maps/map2.json";
+    playerX = -1;
+    playerY = -1;
+    gameArea.style.opacity = "0";
+    setTimeout(function(){
+        gameArea.innerHTML = '';
+        mapCreator();
+        gameArea.style.opacity = "1";
+    }, 3500);
 }

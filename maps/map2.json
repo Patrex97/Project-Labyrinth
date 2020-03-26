@@ -1,13 +1,12 @@
 [
 	{ 
 		"name": "player",
-		"xStart": 0,
+		"xStart": 20,
 		"yStart" : 0
 	},
 	{
-		"name": "finishn",
-		"next": "maps/map2.json",
-		"xStart": 15,
+		"name": "Finishn",
+		"xStart": 2,
 		"yStart" : 27
 	},
 	{
