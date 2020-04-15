@@ -60,12 +60,12 @@ function mapCreator() {
             player.style.top = playerY + "px";
             gameArea.appendChild(player);
             player = document.getElementById("player");
-            if (playerX < 0 || playerY < 0) {
-                playerX = mapInfo[0][0].xStart * scaleValue;
-                playerY = mapInfo[0][0].yStart * scaleValue;
-                player.style.left = playerX + "px";
-                player.style.top = playerY + "px";
-            }
+
+            playerX = mapInfo[0][0].xStart * scaleValue;
+            playerY = mapInfo[0][0].yStart * scaleValue;
+            player.style.left = playerX + "px";
+            player.style.top = playerY + "px";
+
             let mapFinish = document.createElement('div');
             mapFinish.setAttribute('id', 'finish');
             mapFinish.style.left = mapInfo[0][1].xStart * scaleValue + "px";
@@ -143,8 +143,6 @@ function playerMove(e) {
 
 function levelDone() {
     filePath = "maps/map2.json";
-    playerX = -1;
-    playerY = -1;
     gameArea.style.opacity = "0";
     setTimeout(function () {
         gameArea.innerHTML = '';
