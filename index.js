@@ -8,6 +8,7 @@ let $playerX = -1;
 let $playerY = -1;
 let $scaleValue;
 let $oldScaleValue = 0;
+let `$level` = 1;
 
 window.addEventListener("resize", checkSize);
 $gameArea.addEventListener("keypress", playerMove);
@@ -16,29 +17,29 @@ $btnDown.addEventListener("click", moveBtn);
 $btnLeft.addEventListener("click", moveBtn);
 $btnRight.addEventListener("click", moveBtn);
 
-alert("Red square represents you \"The Player\" (You can move with WSAD key's)");
-alert("Black square represents Exit, reach it to complete level");
+// alert("Red square represents you \"The Player\" (You can move with WSAD key's)");
+// alert("Black square represents Exit, reach it to complete level");
 
 function moveBtn() {
     playerMove(this.getAttribute("move_direction"));
 };
 
 function checkSize() {
-    if (window.innerWidth > 1000) {
-        $scaleValue = 30;
+    if (window.innerWidth > 850) {
+        $scaleValue = 25;
 
     } else {
-        $scaleValue = 20;
+        $scaleValue = 15;
 
     }
     if ($oldScaleValue != $scaleValue) {
         $gameArea.innerHTML = '';
-        if ($scaleValue == 20) {
-            $playerX = $playerX * 2 / 3;
-            $playerY = $playerY * 2 / 3;
+        if ($scaleValue == 15) {
+            $playerX = $playerX * 3 / 5;
+            $playerY = $playerY * 3 / 5;
         } else {
-            $playerX = $playerX * 3 / 2;
-            $playerY = $playerY * 3 / 2;
+            $playerX = $playerX * 5 / 3;
+            $playerY = $playerY * 5 / 3;
         }
         mapCreator();
         $oldScaleValue = $scaleValue;
@@ -148,11 +149,11 @@ function playerMove(e) {
 }
 
 function levelDone() {
-    $filePath = "maps/map2.json";
+    $filePath = `maps/map${++$level}.json`;
     $gameArea.style.opacity = "0";
     setTimeout(function () {
         $gameArea.innerHTML = '';
         mapCreator();
         $gameArea.style.opacity = "1";
-    }, 3500);
+    }, 2000);
 }
