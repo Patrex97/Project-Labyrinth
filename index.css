@@ -13,7 +13,9 @@ h1 {
     margin: 0px auto 0; 
     background-color: burlywood;
     position: relative;
-    border: 25px solid blue;
+
+    border: 15px solid transparent;
+    border-image: url('images/wall.png') 80 90 space;
     opacity:1;
     transition: opacity 3s ease-in;
 }
@@ -31,14 +33,17 @@ h1 {
 }
 
 #player{
-    background-color: red;
+    background-image:url('images/player.png');
+    background-size:contain;
     position: absolute;
     z-index: 1;
 }
 
 .wall{
     position: absolute;
-    background-color: blue;
+    background-color: rgb(163, 43, 113);
+    background-image:url('images/wall.png');
+    background-size:contain;
 }
 
 #hud{
@@ -47,7 +52,8 @@ h1 {
 
 #finish{
     position: absolute;
-    background-color:black;
+    background-image:url('images/finish.png');
+    background-size:contain;
 
     z-index: 1;
 }
@@ -56,6 +62,35 @@ h1 {
 #finish{
     height:25px;
     width:25px;
+}
+
+.popup{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-50%);
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0,0, 0, 0.5);
+    z-index:2;
+    display:none;
+}
+
+#instruction{
+    display:none;
+    background-color: #6d93aa;
+    border:3px solid #466375;
+    width:300px;
+    height:300px;
+    padding:20px;
+}
+
+.popup-image{
+    width:40px;
+    height:40px;
+    vertical-align:middle;
 }
 
 

@@ -1,14 +1,16 @@
-const $gameArea = document.getElementById("gameArea");
-const $btnUp = document.getElementById("up");
-const $btnDown = document.getElementById("down");
-const $btnLeft = document.getElementById("left");
-const $btnRight = document.getElementById("right");
+const $gameArea = document.querySelector("#gameArea");
+const $btnUp = document.querySelector("#up");
+const $btnDown = document.querySelector("#down");
+const $btnLeft = document.querySelector("#left");
+const $btnRight = document.querySelector("#right");
+const $popup = document.querySelector('.popup');
 let $filePath = 'maps/map1.json';
 let $playerX = -1;
 let $playerY = -1;
 let $scaleValue;
 let $oldScaleValue = 0;
-let `$level` = 1;
+let $level = 1;
+
 
 window.addEventListener("resize", checkSize);
 $gameArea.addEventListener("keypress", playerMove);
@@ -27,7 +29,6 @@ function moveBtn() {
 function checkSize() {
     if (window.innerWidth > 850) {
         $scaleValue = 25;
-
     } else {
         $scaleValue = 15;
 
@@ -157,3 +158,13 @@ function levelDone() {
         $gameArea.style.opacity = "1";
     }, 2000);
 }
+
+window.addEventListener('DOMContentLoaded', () =>{
+    $popup.style.display = 'grid';
+    $popup.children[0].style.display = 'block';
+    window.addEventListener('keydown', () =>{
+        $popup.style.display = 'none';
+        $popup.children[0].style.display = 'none'; 
+        $gameArea.focus();
+    })
+})
