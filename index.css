@@ -14,10 +14,9 @@ h1 {
     background-color: burlywood;
     position: relative;
 
-    border: 15px solid transparent;
-    border-image: url('images/wall.png') 80 90 space;
+    border: 15px solid rgb(187, 56, 9);
     opacity:1;
-    transition: opacity 3s ease-in;
+    transition: opacity 2s ease-in;
 }
 
 #startGameMenu{
@@ -34,6 +33,7 @@ h1 {
 
 #player{
     background-image:url('images/player.png');
+    
     background-size:contain;
     position: absolute;
     z-index: 1;
@@ -41,9 +41,7 @@ h1 {
 
 .wall{
     position: absolute;
-    background-color: rgb(163, 43, 113);
-    background-image:url('images/wall.png');
-    background-size:contain;
+    background-color: rgb(187, 56, 9);
 }
 
 #hud{
@@ -110,7 +108,7 @@ h1 {
         margin: 0px auto 0; 
         background-color: burlywood;
         position: relative;
-        border: 15px solid blue;
+        border: 15px solid rgb(187, 56, 9);
     }
 
     #hud{
