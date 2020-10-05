@@ -1,8 +1,4 @@
 const $gameArea = document.querySelector("#gameArea");
-const $btnUp = document.querySelector("#up");
-const $btnDown = document.querySelector("#down");
-const $btnLeft = document.querySelector("#left");
-const $btnRight = document.querySelector("#right");
 const $popup = document.querySelector('.popup');
 let $filePath = 'maps/map1.json';
 let $playerX = -1;
@@ -13,34 +9,28 @@ let $level = 1;
 
 
 window.addEventListener("resize", checkSize);
-$gameArea.addEventListener("keypress", playerMove);
-$btnUp.addEventListener("click", moveBtn);
-$btnDown.addEventListener("click", moveBtn);
-$btnLeft.addEventListener("click", moveBtn);
-$btnRight.addEventListener("click", moveBtn);
-
-// alert("Red square represents you \"The Player\" (You can move with WSAD key's)");
-// alert("Black square represents Exit, reach it to complete level");
-
-function moveBtn() {
-    playerMove(this.getAttribute("move_direction"));
-};
+$gameArea.addEventListener("keydown", playerMove);
 
 function checkSize() {
-    if (window.innerWidth > 850) {
+    if (window.innerHeight > 850) {
         $scaleValue = 25;
-    } else {
+    } else if(window.innerHeight < 700) {
         $scaleValue = 15;
-
+    }else{
+        $scaleValue = 20;
     }
     if ($oldScaleValue != $scaleValue) {
         $gameArea.innerHTML = '';
-        if ($scaleValue == 15) {
-            $playerX = $playerX * 3 / 5;
-            $playerY = $playerY * 3 / 5;
-        } else {
-            $playerX = $playerX * 5 / 3;
-            $playerY = $playerY * 5 / 3;
+        switch($scaleValue){
+            case 15: $playerX = $playerX * 3 / 5;
+                     $playerY = $playerY * 3 / 5;
+                     break;
+            case 20: $playerX = $playerX * 4 / 5;
+                     $playerY = $playerY * 4 / 5;
+                     break;
+            case 25: $playerX = $playerX * 5 / 3;
+                     $playerY = $playerY * 5 / 3;
+                     break;
         }
         mapCreator();
         $oldScaleValue = $scaleValue;
@@ -125,9 +115,7 @@ function playerMove(e) {
         }
 
     }
-    console.log(isWall);
     if (!isWall) {
-        console.log(rightBorder);
         switch (key) {
             case "KeyD":
                 if ($playerX + $scaleValue < rightBorder - 2 * $scaleValue) $playerX += $scaleValue;
@@ -140,6 +128,12 @@ function playerMove(e) {
                 break;
             case "KeyW":
                 if ($playerY > 0) $playerY -= $scaleValue;
+                break;
+
+            case "KeyP": 
+                $popup.style.display = 'grid';
+                $popup.children[0].style.display = 'block';
+                $gameArea.blur();
                 break;
 
         }
@@ -162,9 +156,11 @@ function levelDone() {
 window.addEventListener('DOMContentLoaded', () =>{
     $popup.style.display = 'grid';
     $popup.children[0].style.display = 'block';
-    window.addEventListener('keydown', () =>{
-        $popup.style.display = 'none';
-        $popup.children[0].style.display = 'none'; 
-        $gameArea.focus();
+    window.addEventListener('keydown', (e) =>{
+        if(e.code == "Space"){
+            $popup.style.display = 'none';
+            $popup.children[0].style.display = 'none'; 
+            $gameArea.focus();
+        }
     })
 })

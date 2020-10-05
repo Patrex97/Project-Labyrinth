@@ -14,24 +14,17 @@
     <main class="main-container">
         <h1>Project Labyrinth</h1>
         <div id="gameArea" tabindex="-1"></div>
-        <div id="hud">
-            <div id="up" class="move-btn" move_direction="KeyW"></div>
-            <div id="down" class="move-btn" move_direction="KeyS"></div>
-            <div id="left" class="move-btn" move_direction="KeyA"></div>
-            <div id="right" class="move-btn" move_direction="KeyD"></div>
-        </div>
         <div class="popup">
-            <div id="instruction desktop">
+            <div class="instruction">
                 <p><img src="images/player.png" class="popup-image" alt="square should be here"> - The Player (you)</p>
                 <p><img src="images/finish.png"class="popup-image" alt="square should be here"> - Finish</p>
                 <p>Movement:</p>
-                <p>W - Up</p>
-                <p>S - Down</p>
-                <p>A - Left</p>
-                <p>D - Right</p> 
+                <p class="singleLine"><span>W - Up</span> <span>S - Down</span></p>
+                <p class="singleLine"><span>A - Left</span><span>D - Right</span></p>
+                <p>P - Pause</p> 
                 <p>(Press space key to start)</p>
             </div>
-            <!-- <div id="instruction desktop">
+            <!-- <div class="instruction desktop">
                 <p><img src="images/player.png" class="popup-image" alt="square should be here"> - The Player (you)</p>
                 <p><img src="images/finish.png"class="popup-image" alt="square should be here"> - Finish</p>
                 <p>Movement:</p>
