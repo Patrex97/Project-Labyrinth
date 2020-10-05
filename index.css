@@ -2,6 +2,16 @@ body {
     background: #f4f4f4; 
     font-family: sans-serif; 
     box-sizing: border-box;
+    height: 100%;
+    margin:0;
+    overflow-x:hidden;
+}
+
+.main-container{
+    position:relative;
+    width:100vw;
+    height:100%;
+    /* overflow:hidden; */
 }
 h1 { 
     text-align: center; 
@@ -69,8 +79,8 @@ h1 {
     left:50%;
     top:50%;
     transform: translateX(-50%) translateY(-50%);
-    width:100vw;
-    height:100vh;
+    width:100%;
+    height:100%;
     background-color: rgba(0,0, 0, 0.5);
     z-index:2;
     display:none;

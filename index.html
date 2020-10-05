@@ -11,31 +11,36 @@
 </head>
 
 <body>
-    <h1>Project Labyrinth</h1>
-    <div id="gameArea" tabindex="-1"></div>
-    <div id="hud">
-        <div id="up" class="move-btn" move_direction="KeyW"></div>
-        <div id="down" class="move-btn" move_direction="KeyS"></div>
-        <div id="left" class="move-btn" move_direction="KeyA"></div>
-        <div id="right" class="move-btn" move_direction="KeyD"></div>
-    </div>
-    <div class="popup">
-        <div id="instruction">
-            <p></p>
-            <p><img src="images/player.png" class="popup-image" alt="square should be here"> - The Player (you)</p>
-            <p><img src="images/finish.png"class="popup-image" alt="square should be here"> - Finish</p>
-            <p>Movement:</p>
-            <p>W - Up</p>
-            <p>S - Down</p>
-            <p>A - Left</p>
-            <p>D - Right</p> 
-            <p>(Click any key to start game)</p>
+    <main class="main-container">
+        <h1>Project Labyrinth</h1>
+        <div id="gameArea" tabindex="-1"></div>
+        <div id="hud">
+            <div id="up" class="move-btn" move_direction="KeyW"></div>
+            <div id="down" class="move-btn" move_direction="KeyS"></div>
+            <div id="left" class="move-btn" move_direction="KeyA"></div>
+            <div id="right" class="move-btn" move_direction="KeyD"></div>
         </div>
-    </div>
+        <div class="popup">
+            <div id="instruction desktop">
+                <p><img src="images/player.png" class="popup-image" alt="square should be here"> - The Player (you)</p>
+                <p><img src="images/finish.png"class="popup-image" alt="square should be here"> - Finish</p>
+                <p>Movement:</p>
+                <p>W - Up</p>
+                <p>S - Down</p>
+                <p>A - Left</p>
+                <p>D - Right</p> 
+                <p>(Press space key to start)</p>
+            </div>
+            <!-- <div id="instruction desktop">
+                <p><img src="images/player.png" class="popup-image" alt="square should be here"> - The Player (you)</p>
+                <p><img src="images/finish.png"class="popup-image" alt="square should be here"> - Finish</p>
+                <p>Movement:</p>
+                <p>Press/hold movement button on bottom screen</p>
+                <p>(Touch screen to start)</p>
+            </div> -->
+        </div>
+    </main>
     <script src="index.js"></script>
 </body>
 
 </html>
-
-<!-- "xStart": 21,
-		"yStart": 17 -->
